@@ -32,9 +32,6 @@ build_search_index = false # not used by the theme
 generate_feed = false # not used by the theme
 minify_html = true # to ensure correct rendering due to minification of whitespace, should be set to true, unless there is a reason to override it
 
-[markdown]
-highlight_code = false # should be set to false unless the page has code to highlight
-
 [extra]
 footer_text = "This website is built using [Zola](https://www.getzola.org) and the [Academic Workshop](http://github.com/aterenin/academic-workshop/) theme, which is [designed to last](https://jeffhuang.com/designed_to_last/)." # by default this page adds a small and non-intrusive footer with some text linking to this repository - you can set this to false to remove the footer if you prefer
 title = {tagline = "Presenting the", title = "Academic Workshop Zola Theme", subtitles = ["For workshops, seminars, and academic events"]} # this contains the header's tagline, title, and list of subtitles, which are displayed in order
