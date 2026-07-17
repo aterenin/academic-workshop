@@ -20,19 +20,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: 'recursive'
       - name: Download Zola
-        run: curl -fLsS "https://github.com/getzola/zola/releases/download/v0.21.0/zola-v0.21.0-x86_64-unknown-linux-gnu.tar.gz" | tar xzf - -C /usr/local/bin
+        run: curl -fLsS "https://github.com/getzola/zola/releases/download/v0.22.1/zola-v0.22.1-x86_64-unknown-linux-gnu.tar.gz" | tar xzf - -C /usr/local/bin
       - name: Verify Zola binary
-        run: echo "a070b4d6e85dad9c8b821bcd985dd2f07e807f699c881971a73d986fb92f5f7d  /usr/local/bin/zola" | shasum -a 256 -b -c --strict
+        run: echo "45de6b2559aba4df42199dc6b0161acb914d37be4ccaa03297cd4a26c8e14042  /usr/local/bin/zola" | shasum -a 256 -b -c --strict
       - name: Build website
         run: zola build
       - name: Check for server side KaTeX
         run: grep -c "server_side_katex\s*=\s*true" config.toml | sed s/1/SERVER_SIDE_KATEX=true/ | sed s/0/SERVER_SIDE_KATEX=false/ >> $GITHUB_ENV
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         if: ${{ env.SERVER_SIDE_KATEX == 'true' }}
       - name: Install KaTeX
         run: npm install katex
@@ -47,7 +47,7 @@ jobs:
         run: cp node_modules/katex/dist/katex.min.css public; cp -r node_modules/katex/dist/fonts public/fonts
         if: ${{ env.SERVER_SIDE_KATEX == 'true' }}
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./public
           name: github-pages
@@ -61,4 +61,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
