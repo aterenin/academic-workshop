@@ -2,7 +2,7 @@
 {% set url = get_url(path = page.path, trailing_slash = true) %}
 <meta property="og:title" content="{{ page.title | default(value = config.extra.title) }}">
 {% if page.author %}
-    <meta name="author" content="{{ page.author }}">
+<meta name="author" content="{{ page.author }}">
 {% endif %}
 {% if page.description %}
 <meta name="description" content="{{ page.description }}">
@@ -16,7 +16,7 @@
 {% set card = get_url(path = card_file) %}
 {% if card_image %}
 <meta property="og:image" content="{{ card | safe }}">
-<meta property="og:image:type" content="image/png">
+<meta property="og:image:type" content="{{ card_image.mime | safe }}">
 <meta name="twitter:card" content="{% if page.extra.card.large %}summary_large_image{% else %}summary{% endif %}">
 <meta property="twitter:image" content="{{ card | safe }}">
 {% endif %}
