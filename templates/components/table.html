@@ -1,19 +1,20 @@
-{% set input = load_data(path = data) %}
+{% component table(data: string, columns: array, button_names = [], button_data_columns = [], button_output_columns = [], @config) -%}
+{%- set input = load_data(path = data) %}
 <table>
     <thead>
         <tr>
-            {% for column in input.headers %}
-                {% if columns is containing(input.headers[loop.index0]) %}
+            {%- for column in input.headers %}
+                {%- if columns is containing(pat = column) %}
                     <th>{{ column }}</th>
-                {% endif %}
-            {% endfor %}
+                {%- endif %}
+            {%- endfor %}
         </tr>
     </thead>
     <tbody>
-        {% for row in input.records %}
+        {%- for row in input.records %}
             <tr>
-                {% for column in row %}
-                    {% if columns is containing(input.headers[loop.index0]) %}
+                {%- for column in row %}
+                    {%- if columns is containing(pat = input.headers[loop.index0]) %}
                         <td>
                             {{- column -}}
                             {%- set column_idx = loop.index -%}
@@ -24,19 +25,16 @@
                                     {%- set url = row | nth(n = button_data_column - 1) -%}
                                     {{ ' ' }}
                                     {%- if url -%}
-                                        {%- if url is starting_with('/') -%}
-                                            {%- set full_url = config.base_url ~ url -%}
-                                        {%- else -%}
-                                            {%- set full_url = url -%}
-                                        {%- endif -%}
+                                        {%- set full_url = (config.base_url ~ url) if url is starting_with(pat = '/') else url -%}
                                         <a class="btn small px-1 py-0" href="{{ full_url | safe }}">{{ name }}</a>
                                     {%- endif -%}
                                 {%- endif -%}
                             {%- endfor -%}
                         </td>
-                    {% endif %}
-                {% endfor %}
+                    {%- endif %}
+                {%- endfor %}
             </tr>
-        {% endfor %}
+        {%- endfor %}
     </tbody>
 </table>
+{%- endcomponent table %}

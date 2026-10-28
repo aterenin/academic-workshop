@@ -1,11 +1,9 @@
-{% import "macros/list.html" as list %}
-
 {% extends "index.html" %}
 
 {% block content %}
-    <div class="bg-even">
+    <div class="bg-alternating">
         <section class="container py-5">
-            {{ list::item(page = page, highlight = true) }}
+            {{ <list_item page={page} highlight={true} /> }}
         </section>
     </div>
 {% endblock %}

@@ -1,15 +1,9 @@
-{%- macro resize(url=false, name=false, directory=false) -%}
-{%- if url %}
+{%- component image_srcset(url = none, name = none, directory = none, @config) -%}
+{%- if url -%}
     {%- set image_url = url -%}
 {%- elif name -%}
-    {% if directory %}
-        {% set image_dir_no_trailing_slash = directory | trim_end_matches(pat = '/') %}
-        {% set image_dir = image_dir_no_trailing_slash ~ '/' %}
-    {% else %}
-        {% set image_dir = '' %}
-    {% endif %}
-    {%- set image_file_name = name | slugify -%}
-    {%- set image_url = image_dir ~ image_file_name ~ config.extra.image.ext -%}
+    {%- set image_dir = (directory | trim_end(pat = '/')) ~ '/' if directory else '' -%}
+    {%- set image_url = image_dir ~ (name | slugify) ~ config.extra.image.ext -%}
 {%- else -%}
     {%- set error = throw(message = 'Either a URL or name must be defined for image resizing.') -%}
 {%- endif -%}
@@ -18,6 +12,7 @@
     {%- set image_url = 'placeholder.svg' -%}
     {%- set image = get_image_metadata(path = image_url) -%}
 {%- endif -%}
+{%- set image_2x_url = false -%}
 {%- if config.extra.image.resize -%}
     {%- set target_size_1x = config.extra.image.resize / 2 -%}
     {%- if image.format == 'svg' -%}
@@ -41,5 +36,5 @@
     {%- set srcset = '' -%}
 {%- endif -%}
 {%- set src = 'src="' ~ image_1x_url ~ '"' -%}
-{{ srcset ~ src }}
-{%- endmacro -%}
+{{ (srcset ~ src) | safe }}
+{%- endcomponent image_srcset -%}

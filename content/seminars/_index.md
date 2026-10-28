@@ -7,4 +7,4 @@ sort_by = "date"
 
 # Example Seminars
 
-{{ list(section_name = "seminars") }}
+{{ <list section_name="seminars" /> }}

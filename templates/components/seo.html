@@ -1,4 +1,4 @@
-{% macro seo(page) %}
+{% component seo(page: map, @config) %}
 {% set url = get_url(path = page.path, trailing_slash = true) %}
 <meta property="og:title" content="{{ page.title | default(value = config.extra.title) }}">
 {% if page.author %}
@@ -11,15 +11,15 @@
 <link rel="canonical" href="{{ url | safe }}">
 <meta property="og:url" content="{{ url | safe }}">
 <meta property="og:type" content="website">
-{% set card_file = page.extra.card.url | default(value = 'apple-touch-icon.png') %}
+{% set card_file = page.extra.card?.url or 'apple-touch-icon.png' %}
 {% set card_image = get_image_metadata(path = card_file, allow_missing = true) %}
 {% set card = get_url(path = card_file) %}
 {% if card_image %}
 <meta property="og:image" content="{{ card | safe }}">
 <meta property="og:image:type" content="{{ card_image.mime | safe }}">
-<meta name="twitter:card" content="{% if page.extra.card.large %}summary_large_image{% else %}summary{% endif %}">
+<meta name="twitter:card" content="{% if page.extra.card?.large %}summary_large_image{% else %}summary{% endif %}">
 <meta property="twitter:image" content="{{ card | safe }}">
 {% endif %}
 <meta property="twitter:title" content="{{ page.title }}">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite",{% if page.description %}"description":"{{ page.description }}",{% endif %}"headline":"{{ page.title }}",{% if card_image %}"image":"{{ card | safe }}",{% endif %}"name":"{{ page.title }}","url":"{{ url | safe }}"}</script>
-{% endmacro %}
+{% endcomponent seo %}

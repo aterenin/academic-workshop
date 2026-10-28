@@ -8,7 +8,7 @@ A demo website built with Academic Workshop can be found at [aterenin.github.io/
 [Academic Workshop](https://github.com/aterenin/academic-workshop) is designed to be reasonably feature-complete. Its features include:
 
 * An automatic header which lists the tagline, title, and subtitles, with customizable buttons, as well as a background banner image with customizable CSS.
-* Shortcodes for various types of lists such as lists of speakers and lists of previous seminars, as well as highlighting upcoming seminars on the front page, implemented in a fully responsive way to look professional on both desktop and mobile devices.
+* Components for various types of lists such as lists of speakers and lists of previous seminars, as well as highlighting upcoming seminars on the front page, implemented in a fully responsive way to look professional on both desktop and mobile devices.
 * Smart image resizing in image-grid-type lists, such as for lists of speakers.
 * Support for creating a table of accepted workshop papers from a CSV file.
 * Metadata including Twitter Summary Card, OpenGraph, and JSON-LD, implemented similar to [Jekyll SEO Tag](https://github.com/jekyll/jekyll-seo-tag): these ensure pages are search-engine-fiendly and provide social media websites with links which are displayed when links are shared,
@@ -23,7 +23,7 @@ As consequence, the theme has no JavaScript or CSS dependencies of any kind.
 
 The examples below document the theme's options which are available in the TOML files, which are listed as comments within each file.
 
-## Config.toml 
+## Zola.toml 
 
 ```toml
 base_url = "https://example.com"
@@ -56,7 +56,7 @@ institution = "Example Institution" # name of the institution goes here
 author_url = "https://example.com" # the author's webpage, which the theme will create links to
 time = "16:00 UTC" # the time of the seminar
 buttons = [{name = "Example", url = "https://example.com/"}] # a list of buttons displayed on the page and in lists, shown in order
-highlight = true # whether or not the seminar gets displayed on a page using the highlight shortcode, which is designed to display a short list of upcoming seminars on the theme's front page - defaults to false
+highlight = true # whether or not the seminar gets displayed on a page using the highlights component, which is designed to display a short list of upcoming seminars on the theme's front page - defaults to false
 image = "placeholder.svg" # optional: allows ont to override the default image URL
 +++
 

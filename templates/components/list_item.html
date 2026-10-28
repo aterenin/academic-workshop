@@ -1,0 +1,26 @@
+{% component list_item(page: map, highlight: bool, @config) -%}
+<div class="d-flex flex-column r:flex-row items-center r:items-start mb-4">
+    <a class="d-contents" href="{{ get_url(path = page.path) | safe }}">
+        <img class="rounded-circle mb-3" alt="{{ page.extra.author }}" {{ <image_srcset url={page.extra.image or none} name={page.extra.author} directory={page.colocated_path} /> }}>
+    </a>
+    <div class="mr-auto px-3">
+        <a href="{{ get_url(path = page.path) | safe }}">
+            <h2 class="mb-1">{{ page.title }}</h2>
+        </a>
+        <a href="{{ page.extra.author_url | safe }}">
+            <h3 class="h5 mb-2">{{ page.extra.author }} &middot; {{ page.extra.institution }}</h3>
+        </a>
+        {%- set time = (page.extra.time or false) if highlight else false %}
+        <h4 class="h6 mb-3">{{ page.date | date(format='%Y-%m-%d') }}{% if time %} &middot; {{ time }}{% endif %}</h4>
+        {%- set abstract_buttons = [] if highlight else [{"name": "Abstract", "url": get_url(path = page.path)}] %}
+        {%- set shortcut_buttons = [{"name": shortcut.name, "url": page.extra[shortcut.variable]} for shortcut in config.extra.button_shortcuts or [] if page.extra[shortcut.variable]] %}
+        {%- set buttons = [...abstract_buttons, ...(page.extra.buttons or []), ...shortcut_buttons] %}
+        {%- for button in buttons %}
+            <a class="btn mb-3 mr-2" href="{{ button.url | safe }}">{{ button.name }}</a>
+        {%- endfor %}
+        {%- if highlight %}
+            {{ page.content | safe }}
+        {%- endif %}
+    </div>
+</div>
+{%- endcomponent list_item %}

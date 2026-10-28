@@ -44,11 +44,11 @@
 .bg-no-repeat {
     background-repeat: no-repeat !important;
 }
-.bg-odd {
-    background-color: var(--color-light) !important;
-}
-.bg-even {
+.bg-alternating:nth-child(odd) {
     background-color: var(--color-white) !important;
+}
+.bg-alternating:nth-child(even), .bg-header {
+    background-color: var(--color-light) !important;
 }
 .color-text {
     color: var(--color-text);

@@ -10,7 +10,7 @@ This theme is designed for hosting a scientific workshop or seminar series websi
 ## Features
 
 * A customizable header, with support for a banner, icon, title text, subtitle, date, and link, all enabled via straightforward options in the config file.
-* Shortcodes implementing various useful features:
+* Components implementing various useful features:
     * Split the page into sections with a different background color.
     * Create a two-dimensional image grid, for instance for displaying a list of speakers, with support for 2x3, 2x4, and other layouts, as well as automatic image resizing for both 1x and retina 2x displays.
     * Create a list of previous seminars, complete with appropriate buttons and links.
@@ -22,53 +22,52 @@ This theme is designed for hosting a scientific workshop or seminar series websi
 
 
 
-{{ new_block() }}
+{{ <new_block /> }}
 
 
 
 # List of Speakers
 
-{{ grid(
-    text = [
+{{ <grid
+    text={[
         ["Speaker A","Institution A"], 
         ["Speaker B","Institution B"],
         ["Speaker C","Institution C"],
         ["Speaker D","Institution D"],
         ["Speaker E","Institution E"],
-    ],
-    urls = [
+    ]}
+    urls={[
         "https://aterenin.github.io/academic-workshop#speaker_a",
         "https://aterenin.github.io/academic-workshop#speaker_b",
         "https://aterenin.github.io/academic-workshop#speaker_c",
         "https://aterenin.github.io/academic-workshop#speaker_d",
         "https://aterenin.github.io/academic-workshop#speaker_e",
-    ],
-    images = [
+    ]}
+    images={[
         "placeholder.svg",
         "placeholder.svg",
         "placeholder.svg",
         "placeholder.svg",
         "placeholder.svg",
-    ],
-    narrow = true) }}
+    ]} /> }}
 
 
 
-{{ new_block() }}
+{{ <new_block /> }}
 
 
 
 # List of Organizers
 
-{{ grid(
-    text = [
+{{ <grid
+    text={[
         "Organizer A",
         "Organizer B",
-    ],
-    image_dir = "organizers") }}
+    ]}
+    image_dir="organizers" /> }}
 
 
-{{ new_block() }}
+{{ <new_block /> }}
 
 
 
@@ -83,37 +82,37 @@ This theme is designed for hosting a scientific workshop or seminar series websi
 
 
 
-{{ new_block() }}
+{{ <new_block /> }}
 
 
 
 # Accepted Papers
 
-{{ table(
-    data = "papers.csv", 
-    columns = ["Title","Authors"],
-    button_names = ["paper","poster"], 
-    button_data_columns = [3,4], 
-    button_output_columns = [1,1]) }}
+{{ <table
+    data="papers.csv" 
+    columns={["Title","Authors"]}
+    button_names={["paper","poster"]} 
+    button_data_columns={[3,4]} 
+    button_output_columns={[1,1]} /> }}
 
 
 
-{{ new_block() }}
+{{ <new_block /> }}
 
 
 
 # Upcoming Seminar
 
-{{ highlights(section_name = "seminars") }}
+{{ <highlights section_name="seminars" /> }}
 
 
 
-{{ new_block() }}
+{{ <new_block /> }}
 
 
 
 # List of Seminars
 
-{{ list(section_name = "seminars") }}
+{{ <list section_name="seminars" /> }}
 
-{{ button(name = "All Seminars", url = "seminars")}}
+{{ <button name="All Seminars" url="seminars" /> }}

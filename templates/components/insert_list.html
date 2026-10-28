@@ -1,0 +1,33 @@
+{#
+Insert list: rendering a list of seminars, which are contained in the section
+object, is not possible directly from a page's content, because Zola templates
+content before the data used by get_section has been populated. To handle this,
+the below code implements a component-based workaround: (1) use the list
+component to add placeholder divs containing the section name, (2) parse the
+page's HTML to extract the section name, (3) use the get_section function to
+retrieve the relevant section, whose pages will have been populated by Zola by
+the time this component is called from a template, and render the desired list
+of seminars by looping over the section's list of pages, then (4) replace the
+placeholder div with the actual, rendered div. The most obvious way to retrieve
+the section name would have been to use a regex-based find or replace function:
+since Tera templates don't have this, an in-some-sense-less-smart split-based
+approach which places the leading and trailing HTML on both sides is used
+instead. This is hopefully not too hard to make sense of. It would be great to
+rewrite this in a simpler way if future Zola or Tera changes make it possible
+without horrible workarounds.
+#}
+
+{% component insert_list(content: string) -%}
+{%- set split_content = content | split(pat = '<div academic-workshop-list-start></div>') -%}
+{{ split_content[0] | safe }}
+{%- for section_with_trailing_html in split_content[1:] %}
+    {%- set highlight = section_with_trailing_html is containing(pat = '<div academic-workshop-list-end-highlight></div>') %}
+    {%- set pattern = '<div academic-workshop-list-end-highlight></div>' if highlight else '<div academic-workshop-list-end></div>' %}
+    {%- set split_section_with_trailing_html = section_with_trailing_html | split(pat = pattern) %}
+    {%- set section_name = split_section_with_trailing_html[0] %}
+    {%- set trailing_html = split_section_with_trailing_html[1] %}
+    {%- set current_section = get_section(path = section_name ~ '/_index.md') %}
+    {{ <list_items pages={current_section.pages} highlight={highlight} /> }}
+    {{ trailing_html | safe }}
+{%- endfor %}
+{%- endcomponent insert_list %}

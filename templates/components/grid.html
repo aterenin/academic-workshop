@@ -1,0 +1,23 @@
+{% component grid(text: array, urls = [], images = [], dark_invert = [], image_dir = none) -%}
+<div class="grid mt-5 mb-4">
+    {%- for entry in text %}
+        {%- set lines = [entry] if entry is string else entry %}
+        <div class="text-center mx-3">
+            {%- if urls %}
+                <a class="d-contents color-text" href="{{ urls | nth(n = loop.index0) | safe }}">
+            {%- endif %}
+            <img class="{% if dark_invert | nth(n = loop.index0) %}dark-invert {% endif %}rounded-circle mx-auto mb-3" alt="{{ lines[0] }}" {{ <image_srcset url={images | nth(n = loop.index0)} name={lines[0]} directory={image_dir} /> }}>
+            {%- for line in lines %}
+                {%- if loop.first %}
+                    <h2 class="h4 my-1">{{ line }}</h2>
+                {%- else %}
+                    <h3 class="h6 my-1">{{ line }}</h3>
+                {%- endif %}
+            {%- endfor %}
+            {%- if urls %}
+                </a>
+            {%- endif %}
+        </div>
+    {%- endfor %}
+</div>
+{%- endcomponent grid %}

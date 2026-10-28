@@ -1,0 +1,9 @@
+{% component list_items(pages: array, highlight: bool, @section = none, @config) -%}
+<div class="d-flex flex-column mt-5">
+    {%- set page_limit = section?.extra?.list_page_limit or config.extra.list_page_limit %}
+    {%- set filtered_pages = [page for page in pages if page.extra.highlight] if highlight else pages[:page_limit] %}
+    {%- for page in filtered_pages %}
+        {{ <list_item page={page} highlight={highlight} /> }}
+    {%- endfor %}
+</div>
+{%- endcomponent list_items %}

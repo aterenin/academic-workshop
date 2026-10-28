@@ -4,59 +4,59 @@ title = "Responsive Test"
 
 # Responsive Test
 
-{{ grid(
-    text = [
+{{ <grid
+    text={[
         ["Placeholder"],
-    ]
-) }}
-{{ new_block() }}
-{{ grid(
-    text = [
+    ]}
+ /> }}
+{{ <new_block /> }}
+{{ <grid
+    text={[
         ["Placeholder"],
         ["Placeholder"],
-    ]
-) }}
-{{ new_block() }}
-{{ grid(
-    text = [
+    ]}
+ /> }}
+{{ <new_block /> }}
+{{ <grid
+    text={[
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
-    ]
-) }}
-{{ new_block() }}
-{{ grid(
-    text = [
+    ]}
+ /> }}
+{{ <new_block /> }}
+{{ <grid
+    text={[
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
-    ]
-) }}
-{{ new_block() }}
-{{ grid(
-    text = [
+    ]}
+ /> }}
+{{ <new_block /> }}
+{{ <grid
+    text={[
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
-    ]
-) }}
-{{ new_block() }}
-{{ grid(
-    text = [
+    ]}
+ /> }}
+{{ <new_block /> }}
+{{ <grid
+    text={[
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
-    ]
-) }}
-{{ new_block() }}
-{{ grid(
-    text = [
+    ]}
+ /> }}
+{{ <new_block /> }}
+{{ <grid
+    text={[
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
@@ -64,11 +64,11 @@ title = "Responsive Test"
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
-    ]
-) }}
-{{ new_block() }}
-{{ grid(
-    text = [
+    ]}
+ /> }}
+{{ <new_block /> }}
+{{ <grid
+    text={[
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
@@ -77,11 +77,11 @@ title = "Responsive Test"
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
-    ]
-) }}
-{{ new_block() }}
-{{ grid(
-    text = [
+    ]}
+ /> }}
+{{ <new_block /> }}
+{{ <grid
+    text={[
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
@@ -91,11 +91,11 @@ title = "Responsive Test"
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
-    ]
-) }}
-{{ new_block() }}
-{{ grid(
-    text = [
+    ]}
+ /> }}
+{{ <new_block /> }}
+{{ <grid
+    text={[
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
@@ -106,11 +106,11 @@ title = "Responsive Test"
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
-    ]
-) }}
-{{ new_block() }}
-{{ grid(
-    text = [
+    ]}
+ /> }}
+{{ <new_block /> }}
+{{ <grid
+    text={[
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
@@ -122,11 +122,11 @@ title = "Responsive Test"
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
-    ]
-) }}
-{{ new_block() }}
-{{ grid(
-    text = [
+    ]}
+ /> }}
+{{ <new_block /> }}
+{{ <grid
+    text={[
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
@@ -139,6 +139,6 @@ title = "Responsive Test"
         ["Placeholder"],
         ["Placeholder"],
         ["Placeholder"],
-    ]
-) }}
-{{ new_block() }}
+    ]}
+ /> }}
+{{ <new_block /> }}

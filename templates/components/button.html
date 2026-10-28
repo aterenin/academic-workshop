@@ -1,5 +1,7 @@
+{% component button(name: string, url: string) -%}
 <div class="text-center">
     <a class="btn mt-3" href="{{ get_url(path = url) | safe }}">
         {{- name -}}
     </a>
 </div>
+{%- endcomponent button %}
