@@ -1,3 +1,6 @@
+@use "sass:math";
+@use "variables" as *;
+
 
 .grid {
     display: grid;
@@ -8,7 +11,7 @@
 .grid > * {
     grid-column: span 24;
 }
-@media (min-width: round(3 * $container-width / 8)) {
+@media (min-width: math.round(math.div(3 * $container-width, 8))) {
     .grid > * {
         grid-column: span 12;
     }
@@ -16,7 +19,7 @@
         grid-column-end: 19;
     }
 }
-@media (min-width: round(9 * $container-width / 16)) {
+@media (min-width: math.round(math.div(9 * $container-width, 16))) {
     .grid > * {
         grid-column: span 8;
     }
@@ -30,7 +33,7 @@
         grid-column-end: 17;
     }
 }
-@media (min-width: round(3 * $container-width / 4)) {
+@media (min-width: math.round(math.div(3 * $container-width, 4))) {
     .grid > * {
         grid-column: span 6;
     }

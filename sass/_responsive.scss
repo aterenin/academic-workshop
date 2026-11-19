@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 @media (min-width: $responsive-cutoff) {
     .r\:d-none {
         display: none !important;
